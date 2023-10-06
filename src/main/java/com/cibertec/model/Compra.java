@@ -1,13 +1,33 @@
 package com.cibertec.model;
 
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(name = "compra")
 public class Compra {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String numero;
 	private Date fecha;
 	private double total;
+	
+	@ManyToOne
+	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "compra")
+	private List<Detalle_compra> detalles;
 	
 	public Compra() {
 		
@@ -51,6 +71,22 @@ public class Compra {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	public List<Detalle_compra> getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(List<Detalle_compra> detalles) {
+		this.detalles = detalles;
 	}
 
 	@Override

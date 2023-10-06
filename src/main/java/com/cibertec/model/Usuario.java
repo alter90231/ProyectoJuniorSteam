@@ -1,7 +1,20 @@
 package com.cibertec.model;
 
-public class Usuario {
+import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+
+@Entity
+@Table(name = "usuarios")
+public class Usuario {
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
 	private String apellido;
@@ -9,6 +22,12 @@ public class Usuario {
 	private String correo;
 	private String contraseña;
 	private String cargo;
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Juego> juegos;
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Compra> compras;
 	
 	public Usuario() {
 		
@@ -67,6 +86,16 @@ public class Usuario {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
+	
+	public List<Juego> getJuegos() {
+		return juegos;
+	}
+
+	public void setJuegos(List<Juego> juegos) {
+		this.juegos = juegos;
+	}
+	
+	
 
 	@Override
 	public String toString() {

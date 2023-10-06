@@ -1,12 +1,29 @@
 package com.cibertec.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "detalle_compra")
 public class Detalle_compra {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
 	private double cantidad;
 	private double precio;
 	private double total;
+	
+	@ManyToOne
+	private Compra compra;
+	
+	@ManyToOne
+	private Juego juegos;
 	
 	public Detalle_compra() {
 		// TODO Auto-generated constructor stub
@@ -59,6 +76,23 @@ public class Detalle_compra {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	
+	public Compra getCompras() {
+		return compra;
+	}
+
+	public void setCompras(Compra compras) {
+		this.compra = compras;
+	}
+
+	public Juego getJuegos() {
+		return juegos;
+	}
+
+	public void setJuegos(Juego juegos) {
+		this.juegos = juegos;
 	}
 
 	@Override
