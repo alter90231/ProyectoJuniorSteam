@@ -1,5 +1,6 @@
 package com.cibertec.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class JuegoServiceImpl implements JuegoService {
 	}
 
 	@Override
-	public Optional<Juego> get(int id) {
+	public Optional<Juego> get(Integer id) {
 		return Jrepo.findById(id);
 	}
 
@@ -35,5 +36,12 @@ public class JuegoServiceImpl implements JuegoService {
 		Jrepo.deleteById(id);
 		
 	}
+
+	@Override
+	public List<Juego> findAll() {
+		return Jrepo.findAll();		
+	}
+
+
 
 }
