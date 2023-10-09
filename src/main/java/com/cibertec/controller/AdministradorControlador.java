@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/administrador")
+@RequestMapping("/admin")
 public class AdministradorControlador {
 	
 	@GetMapping("")
 	public String Index() {
-		return "Admin/Index";
+		return "Admin/MenuAdmin";
 	}
 }
