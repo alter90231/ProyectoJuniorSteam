@@ -1,5 +1,6 @@
 package com.cibertec.controller;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cibertec.model.Juego;
 import com.cibertec.model.Usuario;
+import com.cibertec.service.ImagenesService;
 import com.cibertec.service.JuegoService;
 
 @Controller
@@ -24,6 +28,9 @@ public class JuegoControlador {
 	
 	@Autowired
 	private JuegoService juegoservice;
+	
+	@Autowired
+	private ImagenesService imagenservice;
 	
 	@GetMapping("")
 	public String Menu(Model model) {
@@ -37,10 +44,24 @@ public class JuegoControlador {
 	}
 	
 	@PostMapping("/guardar")
-	public String guardar(Juego juego) {
+	public String guardar(Juego juego, @RequestParam("img") MultipartFile file) throws IOException {
 		LOGGER.info("Este es el objeto juego {}", juego);
 		Usuario u = new Usuario(1, "", "", "", "", "", "");
 		juego.setUsuario(u);
+		
+		if (juego.getId()==null) {
+			String nombreImagen = imagenservice.guardarImagen(file);
+			juego.setPortada(nombreImagen);
+		}else {
+			if(file.isEmpty()) {
+				Juego j = new Juego();
+				j = juegoservice.get(juego.getId()).get();
+				juego.setPortada(j.getPortada());
+			}else {
+				String nombreImagen = imagenservice.guardarImagen(file);
+				juego.setPortada(nombreImagen);
+			}
+		}
 		
 		juegoservice.save(juego);
 		return "redirect:/menu";
@@ -59,13 +80,35 @@ public class JuegoControlador {
 	}
 	
 	@PostMapping("/actualizar")
-	public String actualizar(Juego juego) {
+	public String actualizar(Juego juego, @RequestParam("img") MultipartFile file) throws IOException {
+		if(file.isEmpty()) {
+			Juego j = new Juego();
+			j = juegoservice.get(juego.getId()).get();
+			juego.setPortada(j.getPortada());
+		}else {
+			Juego j = new Juego();
+			j = juegoservice.get(juego.getId()).get();
+			if(!j.getPortada().equals("default.jpg")) {
+				imagenservice.eliminarImagen(j.getPortada());
+				
+			}
+			String nombreImagen = imagenservice.guardarImagen(file);
+			juego.setPortada(nombreImagen);
+		}
+		
 		juegoservice.update(juego);
 		return "redirect:/menu";
 	}
 	
 	@GetMapping("/eliminar/{id}")
 	public String delete(@PathVariable Integer id) {
+		Juego j = new Juego();
+		j = juegoservice.get(id).get();
+		if(!j.getPortada().equals("default.jpg")) {
+			imagenservice.eliminarImagen(j.getPortada());
+			
+		}
+		
 		juegoservice.delete(id);
 		return "redirect:/menu";
 	}

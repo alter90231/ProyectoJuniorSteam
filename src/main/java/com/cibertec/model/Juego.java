@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 public class Juego {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String nombre;
 	private String portada;
 	private String descrip;	
@@ -26,7 +26,7 @@ public class Juego {
 		
 	}
 		
-	public Juego(int id, String nombre, String portada, String descrip, String cateogoria, double precio,
+	public Juego(Integer id, String nombre, String portada, String descrip, String cateogoria, double precio,
 			Usuario usuario) {
 		super();
 		this.id = id;
@@ -38,10 +38,10 @@ public class Juego {
 		this.usuario = usuario;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNombre() {
