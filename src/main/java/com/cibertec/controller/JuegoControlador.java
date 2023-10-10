@@ -81,13 +81,12 @@ public class JuegoControlador {
 	
 	@PostMapping("/actualizar")
 	public String actualizar(Juego juego, @RequestParam("img") MultipartFile file) throws IOException {
+		Juego j = new Juego();
+		j = juegoservice.get(juego.getId()).get();
+		
 		if(file.isEmpty()) {
-			Juego j = new Juego();
-			j = juegoservice.get(juego.getId()).get();
 			juego.setPortada(j.getPortada());
 		}else {
-			Juego j = new Juego();
-			j = juegoservice.get(juego.getId()).get();
 			if(!j.getPortada().equals("default.jpg")) {
 				imagenservice.eliminarImagen(j.getPortada());
 				
@@ -95,6 +94,7 @@ public class JuegoControlador {
 			String nombreImagen = imagenservice.guardarImagen(file);
 			juego.setPortada(nombreImagen);
 		}
+		juego.setUsuario(j.getUsuario());
 		
 		juegoservice.update(juego);
 		return "redirect:/menu";
