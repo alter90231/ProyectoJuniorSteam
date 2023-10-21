@@ -44,35 +44,46 @@
 
 		
 		<ol class="breadcrumb">
-    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
-    <li class="breadcrumb-item active">Juego</li>
+    <li class="breadcrumb-item"><a th:href="@{/Compra}">Compras</a></li>
+    <li class="breadcrumb-item active">Lista de Orden</li>
   </ol>   
 </div>
-	<h2>Informacion del Juego</h2>
-	<div class="card mb-4">
-		
-  <img th:src="@{/images/{img} (img=${juego.portada}) }" class="card-img-top" >
-  <div class="card-body">
-	  <form th:action="@{/orden}" method="POST">
-		  <input type="hidden" th:value="${juego.id}" name="id">
-    <h5 class="card-title" th:text="${juego.nombre}"></h5>
-    <h6 class="card-title" th:text=" 'Precio :	' + 'S/.	'+${juego.precio}"></h6>
-    
-    <h7 class="card-title">Descripcion:</h7>
-    <p class="card-text" th:text="${juego.descrip}"></p>
-    <p class="card-text"><small class="text-body-secondary" th:text=" 'Categoria :	'+${juego.cateogoria}"></small></p>
-  	Cantidad: <input type="number" id="cantidad" name="cantidad" autocomplete="off" min="1" max="6" value="1">
- 	<br>
- 	<br>
- 	<button type="submit" class="btn btn-outline-success">Añadir al Carrito</button>
-  </div>
-  </form>
-</div>
 
+<div>
+	<h2>Lista de Compra</h2>
+	<br>
+	<h4>Datos del Usuario:</h4>
+	<h6 th:text="'Nombre :	' + ${user.nombre}"></h6>
+	<h6 th:text="'Apellido :	' + ${user.apellido}"></h6>
+	<h6 th:text="'Correo :	' + ${user.correo}"></h6>
+	
+	
+	<h4>Datos de la Compra:</h4>
+	<table class="table table-sm">
+  	<thead>
+    	<tr>			
+			<th>Juego</th>
+			<th>Precio</th>
+			<th>Cantidad</th>
+			<th>Total</th>
+		</tr>
+  	</thead>
+  	<tbody>
+    	<tr th:each="orden:${orden}">
+			<td th:text="${orden.nombre}"></td>
+			<td th:text="${orden.precio}"></td>
+			<td th:text="${orden.cantidad}"></td>
+			<td th:text="${orden.total}"></td>
+		</tr>
+		
+		  <tr>
+			  <h5 th:text=" 'Total: S/.'+${compra.total}"></h5>
+			  <a th:href="@{guardarCompra}" class="btn btn-success">Generar Compra</a>
+		  </tr>
+  	</tbody>
+	  
+</table>
+</div>
 
 </body>
 </html>
-
-	
-	
-	
