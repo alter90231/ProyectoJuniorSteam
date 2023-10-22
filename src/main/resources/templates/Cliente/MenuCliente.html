@@ -7,90 +7,437 @@
 	<meta name="author" content="">
 	
 	<title>Junior´s Steam</title>	
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">	
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>	
+
+<style>
+
+	
+  @import url('https://fonts.googleapis.com/css2?family=Onest:wght@800&display=swap');
+	
+	body{
+		background: rgb(15,140,170);
+background: linear-gradient(0deg, rgba(15,140,170,1) 0%, rgba(15,11,68,1) 46%, rgba(0,0,0,1) 91%);
+	}
+	
+	*{
+		box-sizing: border-box;
+		margin:0;
+		padding: 0;
+		font-family: 'Onest', sans-serif;
+		font-size: 20px;
+	}
+	
+	.header{
+		
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 85px;
+		padding: 5px 10%;
+	}
+	
+	.header .logo{
+		cursor: pointer;
+		display: flex;
+	}
+	
+	.Titulo_logo{
+		color: white;
+		padding-top:23px ;
+		padding-left: 15px;
+		transition: all 0.3s ease;
+	}
+	
+	.Titulo_logo:hover{
+		color:rgb(15,140,170);
+		transition: all 0.3s;
+	}
+	
+	.header .logo img{
+		height: 70px;
+		width: auto;
+		transition: all 0.3s;
+		
+	}
+	
+	.header .logo img:hover{
+		transform: scale(1.2);
+	}
+	
+	.header .nav-links{
+		list-style: none;
+	}
+	
+	.header .nav-links li{
+		display: inline-block;
+		padding: 0 20px;
+		transition: all 0.2s;
+	}
+	
+	.header .nav-links li:hover{
+		transform: scale(1.1);
+	}
+	
+	.header .nav-links a{
+		font-size: 700;
+		color: white;
+		text-decoration: none;
+	}
+	
+	.header .nav-links li a:hover{
+		color: rgb(15,140,170);
+	}
+	
+	.header .btn button{
+		font-weight: 700;
+		color: gray;
+		padding: 9px 25px;
+		background: white;
+		border: none;
+		border-radius: 50px;
+		cursor: pointer;
+		transition: all 0.3s ease 0s;
+	}
+	
+	.header .btn button:hover{
+		background-color: white;
+		color: rgb(15,140,170);
+		transform: scale(1.1);
+	}
+	
+	.buscar input{
+	width: 240px;
+	height: 40px;
+	padding: 0 20px;
+	font-size: 18px;
+	color: black;
+	outline: none;
+	border: 1px solid silver;
+	border-radius: 30px;		
+	}
+	
+	.btn-buscar{
+		position: absolute;
+		top: 15px;
+		right: 480px;
+		background: rgb(15,140,170);
+		width: 55px;
+		height: 55px;
+		line-height: 55px;
+		text-align: center;
+		color: white;
+		font-size: 20px;
+		border-radius: 50%;
+		cursor: pointer;
+		transition: all 0.5s;	
+	}
+	
+	.btn-buscar:hover{
+		transform: scale(1.1) rotate(-360deg);
+	}
+	
+	.content-all{
+		width: 100%;
+		display: flex;
+	}
+	
+	.content-carrusel{
+		width: 90%;
+		
+	}
+	
+	.content-carrusel figure{
+		width: 100%;
+		height: 100%;
+		
+	}
+	
+	.content-carrusel img{
+		width: 100%;
+	}
+	
+	.general{
+		margin : 150px;
+		display: grid;
+		grid-template-columns: repeat(4,1fr);		
+		justify-content: center;
+		align-items: center;
+		
+	}
+	
+	.container{
+		width: 100%;
+		display: flex;
+		max-width: 1100px;
+	}
+	
+	.card{
+		width: 100%;
+		margin: 20px;
+		border-radius: 6px;
+		overflow: hidden;
+		background: white;
+		box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+		cursor: default;
+		transition: all 400ms ease;
+	}
+	
+	.card:hover{
+		box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+		transform: translateY(-3%);
+	} 
+	
+	.card img{
+		width: 100%;
+		height: 210px;
+	}
+	
+	.card .contenido{
+		padding: 15px;
+		text-align: center;
+	}
+	
+	.card .contenido h4{
+		line-height: 1.5;
+		color: rgb(91, 91, 91)
+	}
+	
+	.card .contenido h3{
+		font-weight: 400;
+		margin-bottom: 15px;
+	}
+	
+	.card .contenido a{
+		text-decoration: none;
+		display: inline-block;
+		padding: 10px;
+		margin-top: 10px;
+		color: rgb(15,140,170);
+		border: 1px solid rgb(15,140,170);
+		border-radius: 4px;
+		transition: all 400ms ease;
+	}
+	
+	.card .contenido a:hover{
+		background: rgb(15,140,170);
+		color: white;
+	}
+	
+	footer{
+background: linear-gradient( #0F668C,#0F2256);
+	position: relative;
+	width: 100%;
+	min-height: 350px;
+	padding: 3rem 1rem;
+	border: none;
+	}
+	
+	.container_2{
+		max-width: 1140px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	
+	.row{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.col p{
+		font-size: 15px;
+	}
+	
+	.col{
+		min-width: 250px;
+		color: white;
+		padding: 0 2rem;
+	}
+	
+	.col .logo{
+		width: 100px;
+		margin-bottom: 25px;
+	}
+	
+	.col h3{
+		color:rgb(15,140,170);
+		margin-bottom: 20px;
+		position: relative;
+		cursor: pointer;
+	}
+	
+	.col h3::after{
+		content: '';
+		height: 3px;
+		width: 50px;
+		background-color: rgb(15,140,170);
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		transition: 0.3s ease;
+	}
+	
+	.col h3:hover::after{
+		width: 30px;
+	}
+	
+	.col .social a i{
+		color: rgb(15,140,170);
+		margin-top: 2rem;
+		margin-right: 5px;
+		transition: 0.3s ease;
+	}
+	
+	.col .social a i:hover{
+		transform: scale(1.5);
+		filter:grayscale(25);
+	}
+	
+	.col .links a{
+		display: block;
+		text-decoration: none;
+		color: white;
+		margin-bottom: 5px;
+		position: relative;
+		transition: 0.3s ease;
+	}
+	
+	.col .links a:before{
+		content: '';
+		height: 16px;
+		width: 3px;
+		position: absolute;
+		top: 5px;
+		left: -10px;
+		background-color: rgb(15,140,170);
+		transition: 0.5s ease;
+		opacity: 0;
+	}
+	
+	.col .links a:hover::before{
+		opacity: 1;
+	}
+	
+	.col .links a:hover{
+		transform: translateX(-8px);
+		color: rgb(15,140,170);
+	}
+	
+	.col .contact-details{
+		display: inline-flex;
+		justify-content: space-between;		
+	}
+	
+	.col .contact-details i{
+		margin-right: 15px;
+	}
+	
+	.imgfooter{
+		width: 100px;
+	}
+	
+</style>
+	
 <body>
 	
-<nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
- <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/}">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/Compra}">Carrito</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Buscar juego" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
-      </form>
-    </div>
-  </div>
-</nav>
-
-<div id="carouselExampleIndicators" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-<div class="card mb-3" style="max-width: 540px;" th:each="j:${juegos}">
-  <div class="row g-0" >
-    <div class="col-md-4">
-      <img th:src="@{/images/{img} (img = ${j.portada})}"  class="img-fluid rounded-start" >
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title" th:text="${j.nombre}"></h5>
-        <p class="card-text" th:text="${j.descrip}"></p>
-        <p class="card-text" th:text="${j.cateogoria}"></p>
-        <p class="card-text" th:text="${j.precio}"></p>
-        <a class="btn btn-outline-primary" th:href="@{/VistaJuego/{id} (id = ${j.id})}">Mostrar Producto</a>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-<nav class="navbar fixed-bottom bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Fixed bottom</a>
-  </div>
-</nav>
+	<header class="header">
+		<div class="logo">
+			< th:href="@{/}">
+			<img src="https://img.freepik.com/iconos-gratis/mando_318-626206.jpg"><h1 class="Titulo_logo">Junior's Steam</h1>
+		</div>
+		<nav>
+			<ul class="nav-links">
+				<li><a th:href="@{/}">Home</a></li>
+				<li><a th:href="@{/Compra}">Carrito</a></li>
+			</ul>
+		</nav>
+		<div class="buscar">
+			<form method="post" th:action="@{/buscar}">
+			<input type="text" placeholder="Buscar" required name="nombre">
+			<div class="btn-buscar">		
+				<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+			</div>
+			</form>
+		</div>
+		<a href="#" class="btn"><button>Login</button></a>
+	</header>
 	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<div class="general">
+	<div class="container" th:each="j:${juegos}">
+		<div class="card">
+			<figure>
+				<img th:src="@{/images/{img} (img = ${j.portada})}">
+			</figure>
+			<div class="contenido">
+				<h3 th:text="${j.nombre}"></h3>
+					<h4 th:text="${j.cateogoria} + '	/	' + ${j.precio}">Cate y Precio</h4>
+				<a th:href="@{/VistaJuego/{id} (id = ${j.id})}">Detalles</a>
+			</div>
+		</div>
+	</div>	
+</div>
+
+
+<footer>
+	<div class="container_2">
+		<div class="row">
+			<div class="col" id="company">
+				<a th:href="@{/}">
+				<img class="imgfooter" src="https://img.freepik.com/iconos-gratis/mando_318-626206.jpg">
+				</a>
+				<h3>Informacion</h3>
+				<p>Junior's Steam esta creado para
+				fines lucrativos al gaming.</p>
+				<div class="social">
+					<a href="#"><i class="fac fa-facebook"></i></a>
+					<a href="#"><i class="fac fa-instagram"></i></a>
+					<a href="#"><i class="fac fa-youtube"></i></a>
+					<a href="#"><i class="fac fa-twitter"></i></a>
+				</div>
+			</div>
+			<div class="col" id="services">
+				<h3>Integrantes</h3>
+				<div class="links">
+					<a target="_blank" href="https://www.facebook.com/profile.php?id=100008391422146">De la Cruz Carranza</a>
+					<a target="_blank" href="https://www.facebook.com/jhonar.lazaro.31/photos">Araujo Lazaro</a>
+					<a target="_blank" href="#">Perez Castillo</a>
+					<a target="_blank" href="https://www.facebook.com/JuniorLeccaP1/">Junior Lecca</a>
+				</div>
+			</div>
+			<div class="col" id="useful-links">
+				<h3>Conocidos como...</h3>
+				<div class="links">
+					<a target="_blank" href="https://github.com/alter90231">Gato1</a>
+					<a target="_blank" href="https://github.com/zaikope">Zaikope</a>
+					<a target="_blank" href="#">Royce</a>
+					<a target="_blank" href="https://github.com/Leccap">Ryuran</a>
+				</div>
+			</div>
+			<div class="col" id="contact">
+				<h3>Contactos</h3>
+				<div class="contact-details">
+					<i class="fa fa-location"></i>
+					<p>Av. Los Ejercito - Sede Borgoños</p>
+				</div>
+				<br>
+				<br>
+				<div class="contact-details">
+					<i class="fa fa-phone"></i>
+					<p>+51 966 863 192</p>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</footer>
+	
+	
+    
+</head>
 </body>
 </html>

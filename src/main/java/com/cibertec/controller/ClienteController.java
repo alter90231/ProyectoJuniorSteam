@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -164,5 +165,13 @@ public class ClienteController {
 		detalles.clear();
 		
 		return "redirect:/";
+	}
+	
+	@PostMapping("/buscar")
+	public String buscarJuego(@RequestParam String nombre, Model model) {
+		log.info("Nombre buscado del juego: {}", nombre);
+		List<Juego> juegos = juegoservice.findAll().stream().filter( j -> j.getNombre().contains(nombre)).collect(Collectors.toList());
+		model.addAttribute("juegos", juegos);
+		return "Cliente/MenuCliente";
 	}
 }
